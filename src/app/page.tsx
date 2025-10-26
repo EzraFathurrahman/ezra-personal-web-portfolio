@@ -11,12 +11,6 @@ import {
 } from 'lucide-react';
 
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -56,19 +50,19 @@ const experiences: Experience[] = [
   {
     role: 'Software Engineer (Backend)',
     company: 'PT. Phincon',
-    period: '',
+    period: '2023 - Present',
     description: `● Developed backend services and API bridges for Telkomsel By.U system migration using Golang, Postman, and Wiremock, ensuring smooth integration between legacy and modern systems. ● Engineered microservices using Golang, Kafka, and PostgreSQL for internal orchestration tools, improving system scalability and configuration flexibility. ● Built backend modules for TalentDB using PHP Laravel, MySQL, and Python, enabling AI-assisted resource tracking and improving internal Phincon team assignment workflows. ● Delivered Tibco-based support and documentation for clients such as BPS and Smartfren.`,
   },
   {
     role: 'Backend Developer Intern',
     company: 'PT. Phincon',
-    period: '',
+    period: '2023',
     description: `● Designed and developed RESTful APIs and Order Orchestration features using Java Spring Boot, integrated with PostgreSQL and Redis for caching optimization. ● Implemented automated testing suites using JUnit, Mockito, and MockMvc, resulting in a more reliable and maintainable codebase. ● Assisted in building middleware services using TIBCO BusinessWorks, contributing to scalable integrations for enterprise applications. ● Collaborated with senior engineers and product teams to support feature delivery in Agile sprints, sharpening both technical and cross-functional communication skills.`,
   },
   {
     role: 'Information Technology Intern',
     company: 'PT. Bank Rakyat Indonesia (Persero) Tbk.',
-    period: '',
+    period: '2022',
     description: `● Developed a web-based project dashboard using Laravel, AlpineJS, and MySQL to assist the compliance division in monitoring internal initiatives. ● Analyzed 18+ monthly datasets from company databases and produced actionable graphical reports using SQL and Excel for the finance division. ● Delivered UI design with Figma and Photoshop, collaborating with tech vendors and finance teams during the internal app development process.`,
   },
 ];
@@ -172,8 +166,8 @@ export default function PortfolioPage() {
       <main className="container mx-auto max-w-screen-xl p-4 sm:p-6 md:p-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Card className="overflow-hidden text-center shadow-lg">
-              <CardContent className="p-6">
+            <Card className="h-full overflow-hidden text-center shadow-lg">
+              <CardContent className="flex h-full flex-col items-center justify-center p-6">
                 <div className="mx-auto mb-4 size-36">
                   {profileImage && (
                     <Image
@@ -214,8 +208,8 @@ export default function PortfolioPage() {
             </Card>
           </div>
 
-          <div className="space-y-8 lg:col-span-8">
-            <Card className="shadow-lg">
+          <div className="lg:col-span-8">
+            <Card className="h-full shadow-lg">
               <CardHeader>
                 <CardTitle className="font-headline text-2xl">
                   About Me
@@ -295,37 +289,28 @@ export default function PortfolioPage() {
                 Work Experience
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <Accordion type="single" collapsible className="w-full">
-                {experiences.map((exp, index) => (
-                  <AccordionItem
-                    key={index}
-                    value={`item-${index}`}
-                    className={
-                      index === experiences.length - 1 ? 'border-b-0' : ''
-                    }
-                  >
-                    <AccordionTrigger className="text-left hover:no-underline">
-                      <div>
-                        <h3 className="font-semibold">{exp.role}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {exp.company}
-                        </p>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="list-inside list-disc space-y-2 pl-2 text-muted-foreground">
-                        {exp.description
-                          .split('●')
-                          .filter((point) => point.trim() !== '')
-                          .map((point, i) => (
-                            <li key={i}>{point.trim()}</li>
-                          ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+            <CardContent className="space-y-6">
+              {experiences.map((exp, index) => (
+                <div key={index}>
+                  <div className="text-left">
+                    <h3 className="font-semibold">{exp.role}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {exp.company} &middot; {exp.period}
+                    </p>
+                  </div>
+                  <ul className="mt-2 list-inside list-disc space-y-2 pl-2 text-muted-foreground">
+                    {exp.description
+                      .split('●')
+                      .filter((point) => point.trim() !== '')
+                      .map((point, i) => (
+                        <li key={i}>{point.trim()}</li>
+                      ))}
+                  </ul>
+                  {index < experiences.length - 1 && (
+                    <Separator className="mt-6" />
+                  )}
+                </div>
+              ))}
             </CardContent>
           </Card>
 
