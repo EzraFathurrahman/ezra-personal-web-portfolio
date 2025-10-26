@@ -172,14 +172,14 @@ export default function PortfolioPage() {
           <div className="lg:col-span-4">
             <Card className="h-full overflow-hidden shadow-lg">
               <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center">
-                <div className="relative mb-4 h-32 w-32">
+                <div className="mb-4">
                   {profileImage && (
                     <Image
                       src={profileImage.imageUrl}
                       alt={profileImage.description}
                       width={128}
                       height={128}
-                      className="rounded-lg object-cover"
+                      className="h-32 w-32 rounded-lg object-cover"
                       data-ai-hint={profileImage.imageHint}
                     />
                   )}
