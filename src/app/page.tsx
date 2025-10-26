@@ -26,6 +26,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { Separator } from '@/components/ui/separator';
 import { DockerIcon } from '@/components/icons/docker-icon';
 import { GitIcon } from '@/components/icons/git-icon';
@@ -120,6 +127,41 @@ const interests = [
   { name: 'Gaming', icon: <Gamepad2 className="size-5" /> },
 ];
 
+const projects = [
+  {
+    id: 'project-1',
+    title: 'Orchestration Tool',
+    description: 'A microservice-based orchestration tool for Telkomsel to manage system configurations.',
+    imageUrl: 'https://picsum.photos/seed/project1/600/400',
+    imageHint: 'abstract network',
+    tags: ['Golang', 'Kafka', 'PostgreSQL'],
+  },
+  {
+    id: 'project-2',
+    title: 'TalentDB',
+    description: 'An AI-assisted resource tracking platform for internal team assignments at Phincon.',
+    imageUrl: 'https://picsum.photos/seed/project2/600/400',
+    imageHint: 'team collaboration',
+    tags: ['PHP', 'Laravel', 'Python', 'AI'],
+  },
+  {
+    id: 'project-3',
+    title: 'BRI Compliance Dashboard',
+    description: 'A web dashboard for Bank Rakyat Indonesia to monitor internal project compliance.',
+    imageUrl: 'https://picsum.photos/seed/project3/600/400',
+    imageHint: 'data dashboard',
+    tags: ['Laravel', 'AlpineJS', 'MySQL'],
+  },
+  {
+    id: 'project-4',
+    title: 'E-Commerce Backend',
+    description: 'Order orchestration and RESTful APIs for an e-commerce platform using Spring Boot.',
+    imageUrl: 'https://picsum.photos/seed/project4/600/400',
+    imageHint: 'online shopping',
+    tags: ['Java', 'Spring Boot', 'Redis'],
+  },
+];
+
 export default function PortfolioPage() {
   const profileImage = PlaceHolderImages.find(
     (img) => img.id === 'profile-picture'
@@ -127,9 +169,9 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <main className="mx-auto max-w-screen-xl p-4 sm:p-6 md:p-12">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-          <aside className="space-y-8 lg:col-span-4">
+      <main className="container mx-auto max-w-screen-xl p-4 sm:p-6 md:p-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-4">
             <Card className="overflow-hidden text-center shadow-lg">
               <CardContent className="p-6">
                 <div className="mx-auto mb-4 size-36">
@@ -170,7 +212,193 @@ export default function PortfolioPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
 
+          <div className="space-y-8 lg:col-span-8">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="font-headline text-2xl">
+                  About Me
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="leading-relaxed text-muted-foreground">
+                  Backend engineer specializing in scalable system design and
+                  high-performance services. Experienced with Golang, Java Spring
+                  Boot, SQL/NoSQL databases, Kafka, and containerized
+                  deployments. I enjoy turning complex requirements into clean,
+                  resilient, and maintainable backend solutions.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <div className="mt-8 space-y-8">
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="font-headline text-2xl">Projects</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Carousel
+                opts={{
+                  align: 'start',
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {projects.map((project) => (
+                    <CarouselItem
+                      key={project.id}
+                      className="md:basis-1/2 lg:basis-1/3"
+                    >
+                      <div className="p-1">
+                        <Card className="h-full overflow-hidden">
+                          <Image
+                            src={project.imageUrl}
+                            alt={project.title}
+                            width={600}
+                            height={400}
+                            className="w-full object-cover"
+                            data-ai-hint={project.imageHint}
+                          />
+                          <CardHeader>
+                            <CardTitle>{project.title}</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="mb-4 text-sm text-muted-foreground">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tags.map((tag) => (
+                                <Badge key={tag} variant="secondary">
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="ml-12" />
+                <CarouselNext className="mr-12" />
+              </Carousel>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="font-headline text-2xl">
+                Work Experience
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Accordion type="single" collapsible className="w-full">
+                {experiences.map((exp, index) => (
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className={
+                      index === experiences.length - 1 ? 'border-b-0' : ''
+                    }
+                  >
+                    <AccordionTrigger className="text-left hover:no-underline">
+                      <div>
+                        <h3 className="font-semibold">{exp.role}</h3>
+                        <p className="text-sm text-muted-foreground">
+                          {exp.company}
+                        </p>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="list-inside list-disc space-y-2 pl-2 text-muted-foreground">
+                        {exp.description
+                          .split('●')
+                          .filter((point) => point.trim() !== '')
+                          .map((point, i) => (
+                            <li key={i}>{point.trim()}</li>
+                          ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="font-headline text-xl">
+                  Engineering Mastery
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-6">
+                {engineeringSkills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="flex flex-col items-center gap-2 text-center"
+                  >
+                    {skill.icon}
+                    <p className="text-sm font-medium">{skill.name}</p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="font-headline text-xl">
+                  Development Tools
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-6">
+                {devTools.map((tool) => (
+                  <div
+                    key={tool.name}
+                    className="flex flex-col items-center gap-2 text-center"
+                  >
+                    {tool.icon}
+                    <p className="text-sm font-medium">{tool.name}</p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="font-headline text-2xl">
+                Certifications
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {certifications.map((cert, index) => (
+                <div key={index}>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 className="font-semibold">{cert.title}</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Issued by {cert.issuer} &middot; {cert.year}
+                      </p>
+                    </div>
+                    <Button asChild variant="ghost" size="icon">
+                      <Link href={cert.link} target="_blank">
+                        <ExternalLink className="size-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                  {index < certifications.length - 1 && (
+                    <Separator className="mt-4" />
+                  )}
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="font-headline text-xl">
@@ -217,132 +445,6 @@ export default function PortfolioPage() {
                     linkedin.com/in/ezrafathurrahman
                   </a>
                 </div>
-              </CardContent>
-            </Card>
-          </aside>
-
-          <div className="space-y-8 lg:col-span-8">
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl">
-                  About Me
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="leading-relaxed text-muted-foreground">
-                  Backend engineer specializing in scalable system design and
-                  high-performance services. Experienced with Golang, Java Spring
-                  Boot, SQL/NoSQL databases, Kafka, and containerized
-                  deployments. I enjoy turning complex requirements into clean,
-                  resilient, and maintainable backend solutions.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl">
-                  Work Experience
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Accordion type="single" collapsible className="w-full">
-                  {experiences.map((exp, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={`item-${index}`}
-                      className={index === experiences.length - 1 ? 'border-b-0' : ''}
-                    >
-                      <AccordionTrigger className="text-left hover:no-underline">
-                        <div>
-                          <h3 className="font-semibold">{exp.role}</h3>
-                          <p className="text-sm text-muted-foreground">
-                            {exp.company}
-                          </p>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <ul className="list-inside list-disc space-y-2 pl-2 text-muted-foreground">
-                          {exp.description
-                            .split('●')
-                            .filter((point) => point.trim() !== '')
-                            .map((point, i) => (
-                              <li key={i}>{point.trim()}</li>
-                            ))}
-                        </ul>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </CardContent>
-            </Card>
-
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <Card className="shadow-lg">
-                <CardHeader>
-                  <CardTitle className="font-headline text-xl">
-                    Engineering Mastery
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-6">
-                  {engineeringSkills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="flex flex-col items-center gap-2 text-center"
-                    >
-                      {skill.icon}
-                      <p className="text-sm font-medium">{skill.name}</p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-              <Card className="shadow-lg">
-                <CardHeader>
-                  <CardTitle className="font-headline text-xl">
-                    Development Tools
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-6">
-                  {devTools.map((tool) => (
-                    <div
-                      key={tool.name}
-                      className="flex flex-col items-center gap-2 text-center"
-                    >
-                      {tool.icon}
-                      <p className="text-sm font-medium">{tool.name}</p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl">
-                  Certifications
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {certifications.map((cert, index) => (
-                  <div key={index}>
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h4 className="font-semibold">{cert.title}</h4>
-                        <p className="text-sm text-muted-foreground">
-                          Issued by {cert.issuer} &middot; {cert.year}
-                        </p>
-                      </div>
-                      <Button asChild variant="ghost" size="icon">
-                        <Link href={cert.link} target="_blank">
-                          <ExternalLink className="size-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                    {index < certifications.length - 1 && (
-                      <Separator className="mt-4" />
-                    )}
-                  </div>
-                ))}
               </CardContent>
             </Card>
           </div>
