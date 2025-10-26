@@ -129,6 +129,7 @@ const projects = [
     imageUrl: 'https://picsum.photos/seed/project1/600/400',
     imageHint: 'abstract network',
     tags: ['Golang', 'Kafka', 'PostgreSQL'],
+    link: '#',
   },
   {
     id: 'project-2',
@@ -137,6 +138,7 @@ const projects = [
     imageUrl: 'https://picsum.photos/seed/project2/600/400',
     imageHint: 'team collaboration',
     tags: ['PHP', 'Laravel', 'Python', 'AI'],
+    link: '#',
   },
   {
     id: 'project-3',
@@ -145,6 +147,7 @@ const projects = [
     imageUrl: 'https://picsum.photos/seed/project3/600/400',
     imageHint: 'data dashboard',
     tags: ['Laravel', 'AlpineJS', 'MySQL'],
+    link: '#',
   },
   {
     id: 'project-4',
@@ -153,6 +156,7 @@ const projects = [
     imageUrl: 'https://picsum.photos/seed/project4/600/400',
     imageHint: 'online shopping',
     tags: ['Java', 'Spring Boot', 'Redis'],
+    link: '#',
   },
 ];
 
@@ -168,22 +172,24 @@ export default function PortfolioPage() {
           <div className="lg:col-span-4">
             <Card className="h-full overflow-hidden text-center shadow-lg">
               <CardContent className="flex h-full flex-col items-center justify-center p-6">
-                <div className="mx-auto mb-4 size-36">
+                <div className="mx-auto mb-4 size-32">
                   {profileImage && (
                     <Image
                       src={profileImage.imageUrl}
                       alt={profileImage.description}
-                      width={144}
-                      height={144}
+                      width={128}
+                      height={128}
                       className="rounded-full object-cover"
                       data-ai-hint={profileImage.imageHint}
                     />
                   )}
                 </div>
-                <h1 className="font-headline text-3xl font-bold text-primary">
+                <h1 className="font-headline text-2xl font-bold text-primary">
                   Ezra Fathurrahman
                 </h1>
-                <p className="mt-1 text-muted-foreground">Backend Engineer</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Backend Engineer
+                </p>
                 <div className="mt-6 flex justify-center gap-4">
                   <Button asChild variant="outline" size="icon">
                     <Link
@@ -248,31 +254,33 @@ export default function PortfolioPage() {
                       className="md:basis-1/2 lg:basis-1/3"
                     >
                       <div className="p-1">
-                        <Card className="h-full overflow-hidden">
-                          <Image
-                            src={project.imageUrl}
-                            alt={project.title}
-                            width={600}
-                            height={400}
-                            className="w-full object-cover"
-                            data-ai-hint={project.imageHint}
-                          />
-                          <CardHeader>
-                            <CardTitle>{project.title}</CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="mb-4 text-sm text-muted-foreground">
-                              {project.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              {project.tags.map((tag) => (
-                                <Badge key={tag} variant="secondary">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                          </CardContent>
-                        </Card>
+                        <Link href={project.link} target="_blank">
+                          <Card className="h-full overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                            <Image
+                              src={project.imageUrl}
+                              alt={project.title}
+                              width={600}
+                              height={400}
+                              className="w-full object-cover"
+                              data-ai-hint={project.imageHint}
+                            />
+                            <CardHeader>
+                              <CardTitle>{project.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <p className="mb-4 text-sm text-muted-foreground">
+                                {project.description}
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                                {project.tags.map((tag) => (
+                                  <Badge key={tag} variant="secondary">
+                                    {tag}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </Link>
                       </div>
                     </CarouselItem>
                   ))}
@@ -414,10 +422,10 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-4">
                   <Mail className="size-5 text-muted-foreground" />
                   <a
-                    href="mailto:ezra.fathurrahman@example.com"
+                    href="mailto:ezra.fathurrahman@gmail.com"
                     className="text-sm hover:text-primary"
                   >
-                    ezra.fathurrahman@example.com
+                    ezra.fathurrahman@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
@@ -427,7 +435,7 @@ export default function PortfolioPage() {
                     target="_blank"
                     className="text-sm hover:text-primary"
                   >
-                    linkedin.com/in/ezrafathurrahman
+                    linkedin.com/in/muhammad-ezra/
                   </a>
                 </div>
               </CardContent>
