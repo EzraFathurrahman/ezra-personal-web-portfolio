@@ -170,16 +170,16 @@ export default function PortfolioPage() {
       <main className="container mx-auto max-w-screen-xl p-4 sm:p-6 md:p-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Card className="h-full overflow-hidden text-center shadow-lg">
-              <CardContent className="flex h-full flex-col items-center justify-center p-6">
-                <div className="mx-auto mb-4 size-32">
+            <Card className="h-full overflow-hidden shadow-lg">
+              <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center">
+                <div className="relative mb-4 h-32 w-32">
                   {profileImage && (
                     <Image
                       src={profileImage.imageUrl}
                       alt={profileImage.description}
                       width={128}
                       height={128}
-                      className="rounded-full object-cover"
+                      className="rounded-lg object-cover"
                       data-ai-hint={profileImage.imageHint}
                     />
                   )}
