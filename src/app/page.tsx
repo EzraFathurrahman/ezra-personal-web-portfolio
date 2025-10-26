@@ -174,6 +174,26 @@ export default function PortfolioPage() {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="font-headline text-xl">
+                  Interests
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-wrap gap-4">
+                {interests.map((interest) => (
+                  <Badge
+                    key={interest.name}
+                    variant="secondary"
+                    className="flex items-center gap-2 py-1.5"
+                  >
+                    {interest.icon}
+                    <span className="text-sm">{interest.name}</span>
+                  </Badge>
+                ))}
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="font-headline text-xl">
                   Contact
                 </CardTitle>
               </CardHeader>
@@ -197,26 +217,6 @@ export default function PortfolioPage() {
                     linkedin.com/in/ezrafathurrahman
                   </a>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-lg">
-              <CardHeader>
-                <CardTitle className="font-headline text-xl">
-                  Interests
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-4">
-                {interests.map((interest) => (
-                  <Badge
-                    key={interest.name}
-                    variant="secondary"
-                    className="flex items-center gap-2 py-1.5"
-                  >
-                    {interest.icon}
-                    <span className="text-sm">{interest.name}</span>
-                  </Badge>
-                ))}
               </CardContent>
             </Card>
           </aside>
