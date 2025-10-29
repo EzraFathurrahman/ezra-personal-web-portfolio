@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import {
   BookOpen,
   CodeXml,
@@ -9,25 +7,9 @@ import {
   Linkedin,
   Mail,
 } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import { Separator } from '@/components/ui/separator';
 import { DockerIcon } from '@/components/icons/docker-icon';
 import { GitIcon } from '@/components/icons/git-icon';
 import { GithubIcon } from '@/components/icons/github-icon';
@@ -38,6 +20,24 @@ import { JiraIcon } from '@/components/icons/jira-icon';
 import { KafkaIcon } from '@/components/icons/kafka-icon';
 import { RedisIcon } from '@/components/icons/redis-icon';
 import { SlackIcon } from '@/components/icons/slack-icon';
+import { VscodeIcon } from '@/components/icons/vscode-icon';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Separator } from '@/components/ui/separator';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 type Experience = {
   role: string;
@@ -77,11 +77,12 @@ const engineeringSkills: Skill[] = [
   { name: 'Java Spring Boot', icon: <JavaIcon className="size-10" /> },
   { name: 'Kafka', icon: <KafkaIcon className="size-10" /> },
   { name: 'Redis', icon: <RedisIcon className="size-10" /> },
+  { name: 'Docker', icon: <DockerIcon className="size-10" /> }
 ];
 
 const devTools: Skill[] = [
   { name: 'Git', icon: <GitIcon className="size-10" /> },
-  { name: 'Docker', icon: <DockerIcon className="size-10" /> },
+  { name: 'Vs Code', icon: <VscodeIcon className="size-10" /> },
   { name: 'Slack', icon: <SlackIcon className="size-10" /> },
   { name: 'Jira', icon: <JiraIcon className="size-10" /> },
 ];
@@ -126,8 +127,6 @@ const projects = [
     id: 'project-1',
     title: 'Orchestration Tool',
     description: 'A microservice-based orchestration tool for Telkomsel to manage system configurations.',
-    imageUrl: 'https://picsum.photos/seed/project1/600/400',
-    imageHint: 'abstract network',
     tags: ['Golang', 'Kafka', 'PostgreSQL'],
     link: '#',
   },
@@ -135,8 +134,6 @@ const projects = [
     id: 'project-2',
     title: 'TalentDB',
     description: 'An AI-assisted resource tracking platform for internal team assignments at Phincon.',
-    imageUrl: 'https://picsum.photos/seed/project2/600/400',
-    imageHint: 'team collaboration',
     tags: ['PHP', 'Laravel', 'Python', 'AI'],
     link: '#',
   },
@@ -144,8 +141,6 @@ const projects = [
     id: 'project-3',
     title: 'BRI Compliance Dashboard',
     description: 'A web dashboard for Bank Rakyat Indonesia to monitor internal project compliance.',
-    imageUrl: 'https://picsum.photos/seed/project3/600/400',
-    imageHint: 'data dashboard',
     tags: ['Laravel', 'AlpineJS', 'MySQL'],
     link: '#',
   },
@@ -153,8 +148,6 @@ const projects = [
     id: 'project-4',
     title: 'E-Commerce Backend',
     description: 'Order orchestration and RESTful APIs for an e-commerce platform using Spring Boot.',
-    imageUrl: 'https://picsum.photos/seed/project4/600/400',
-    imageHint: 'online shopping',
     tags: ['Java', 'Spring Boot', 'Redis'],
     link: '#',
   },
@@ -256,14 +249,6 @@ export default function PortfolioPage() {
                       <div className="p-1">
                         <Link href={project.link} target="_blank">
                           <Card className="h-full overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-                            <Image
-                              src={project.imageUrl}
-                              alt={project.title}
-                              width={600}
-                              height={400}
-                              className="w-full object-cover"
-                              data-ai-hint={project.imageHint}
-                            />
                             <CardHeader>
                               <CardTitle>{project.title}</CardTitle>
                             </CardHeader>
@@ -422,16 +407,16 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-4">
                   <Mail className="size-5 text-muted-foreground" />
                   <a
-                    href="mailto:ezra.fathurrahman@gmail.com"
+                    href="mailto:ezrafathurrahman@gmail.com"
                     className="text-sm hover:text-primary"
                   >
-                    ezra.fathurrahman@gmail.com
+                    ezrafathurrahman@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <Linkedin className="size-5 text-muted-foreground" />
                   <a
-                    href="#"
+                    href="https://linkedin.com/in/muhammad-ezra/"
                     target="_blank"
                     className="text-sm hover:text-primary"
                   >

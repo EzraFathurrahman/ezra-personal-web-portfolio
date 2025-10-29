@@ -5,9 +5,9 @@ type Props = {
   alt?: string;
 };
 
-export const JiraIcon = ({ className, alt = 'Jira' }: Props) => (
+export const VscodeIcon = ({ className, alt = 'vs code' }: Props) => (
   <Image
-    src="/icons/jira.svg"  // Path to your uploaded image
+    src="/icons/vscode.svg"  // Path to your uploaded image
     alt={alt}
     width={40}
     height={40}
